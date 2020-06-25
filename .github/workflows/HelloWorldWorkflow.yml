@@ -7,7 +7,7 @@ jobs:
                 name: Hello World Test
                 runs-on: ubuntu-latest
                 steps:
-                        name: Print Hello
+                      - name: Print Hello
                         env:
                                 MY_VAR: Hello,
                                 FIRST_NAME: this
