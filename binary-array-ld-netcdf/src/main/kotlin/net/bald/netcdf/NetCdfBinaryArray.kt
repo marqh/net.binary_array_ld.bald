@@ -15,7 +15,7 @@ class NetCdfBinaryArray(
     override val uri: String,
     private val file: NetcdfFile
 ): BinaryArray, Closeable {
-    override val root: Container get() = NetCdfContainer(file)
+    override val root: Container get() = NetCdfContainer(file.rootGroup)
 
     override fun close() {
         file.close()
