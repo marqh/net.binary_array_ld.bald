@@ -13,6 +13,7 @@ object ModelBinaryArrayConverter {
      * @param ba The binary array to convert.
      * @return The resulting model.
      */
+    @JvmStatic
     fun convert(ba: BinaryArray): Model {
         TODO()
     }

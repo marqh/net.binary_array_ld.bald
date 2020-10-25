@@ -22,6 +22,7 @@ class NetCdfBinaryArray(
     }
 
     companion object {
+        @JvmStatic
         fun create(fileLoc: String, uri: String? = null): NetCdfBinaryArray {
             TODO()
         }
