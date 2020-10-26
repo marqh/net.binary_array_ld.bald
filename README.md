@@ -1,7 +1,7 @@
 # Binary Array Linked Data
 
 [Kotlin](https://kotlinlang.org/) library and CLI for Binary Array Linked Data (BALD) functionality.
-* NetCDF to RDF conversion according to [OGC draft specification]((http://docs.opengeospatial.org/DRAFTS/19-002.html)).
+* NetCDF to RDF conversion according to [OGC draft specification](http://docs.opengeospatial.org/DRAFTS/19-002.html).
 
 This project consists of the following modules:
 * **binary-array-ld-lib** Core library containing BALD functionality. In particular, binary array to linked data (RDF) conversion.
@@ -55,7 +55,7 @@ BinaryArray ba = NetCdfBinaryArray.create(inputLoc, "http://test.binary-array-ld
 Model model = ModelBinaryArrayConverter.convert(ba);
 
 try (OutputStream output = new FileOutputStream(outputLoc)) {
-    model.write(output, format);
+    model.write(output, "ttl");
 }
 ```
 
