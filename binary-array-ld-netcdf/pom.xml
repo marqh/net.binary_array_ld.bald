@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>binary-array-ld</artifactId>
+        <groupId>net.binary-array-ld</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>binary-array-ld-netcdf</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Binary Array Linked Data - NetCDF</name>
+    <description>NetCDF implementation of core Binary Array LD concepts.</description>
+
+    <properties>
+        <netcdf.version>5.3.2</netcdf.version>
+    </properties>
+
+    <dependencies>
+        <!-- LIB -->
+        <dependency>
+            <groupId>net.binary-array-ld</groupId>
+            <artifactId>binary-array-ld-lib</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>edu.ucar</groupId>
+            <artifactId>cdm-core</artifactId>
+            <version>${netcdf.version}</version>
+        </dependency>
+        <!-- TEST -->
+        <dependency>
+            <groupId>net.binary-array-ld</groupId>
+            <artifactId>binary-array-ld-test</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>unidata-all</id>
+            <name>Unidata</name>
+            <url>https://artifacts.unidata.ucar.edu/repository/unidata-all/</url>
+        </repository>
+    </repositories>
+</project>
