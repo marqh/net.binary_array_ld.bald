@@ -11,6 +11,11 @@ RDF representations are provided by [Apache Jena](https://jena.apache.org/).
 * **binary-array-ld-test** Common test utilities used by other modules.
 * **binary-array-ld-demo** Demonstrations of BALD API usage.
 
+## Development
+
+Note that, in order to run the automated tests for this project,
+the `ncgen` command line tool must be available on your system.
+
 ## Usage
 
 This project can be used either as a library or as a command line application.
@@ -60,7 +65,29 @@ try (OutputStream output = new FileOutputStream("/path/to/output.ttl")) {
 ```
 
 ### Command Line Interface
-( TODO )
+
+To use the BALD CLI, build the project using `mvn clean package` on the root directory.
+Then, you can run the JAR located at `binary-array-ld-cli/target/bald-cli.jar` using the `java-jar` command.
+
+The application accepts arguments in the following format: 
+ ```
+java -jar binary-array-ld-cli/target/bald-cli.jar [options] inputFile [outputFile]
+```
+Where `inputFile` is the location of the NetCDF file to convert,
+and `outputFile` is the location of the file in which to output the RDF graph.
+If you don't specify an `outputFile`, the graph will be printed on the command line.
+
+You can also supply various options.
+Use the `-h` or `--help` option to emit full documentation for the available options.
+```
+java -jar binary-array-ld-cli/target/bald-cli.jar -h
+```
+
+#### Example
+From the `binary-array-ld-cli/target` directory:
+```
+java -jar bald-cli.jar --uri http://test.binary-array-ld.net/example /path/to/netcdf.nc /path/to/graph.ttl
+```
 
 
 
