@@ -15,7 +15,7 @@ object CdlConverter {
      * @param cdlLoc The location of the CDL resource.
      * @return The NetCDF file.
      */
-    fun convertToNetCdf(cdlLoc: String): File {
+    fun writeToNetCdf(cdlLoc: String): File {
         val cdlFile = createTempFile()
         javaClass.getResourceAsStream(cdlLoc).use { cdl ->
             cdlFile.outputStream().use(cdl::copyTo)
