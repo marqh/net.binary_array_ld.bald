@@ -27,7 +27,7 @@ class NetCdfPrefixMappingBuilder(
     }
 
     private fun uri(attr: Attribute): String {
-        return attr.stringValue ?: throw IllegalStateException("Prefix attribute ${attr.shortName} has a non-string value.")
+        return attr.stringValue ?: throw IllegalStateException("Prefix attribute ${attr.shortName} must have a string value.")
     }
 
     companion object {

@@ -43,7 +43,7 @@ class NetCdfBinaryArray(
     private fun prefixSourceName(): String? {
         return file.findGlobalAttribute(Attribute.prefix)?.let { attr ->
             attr.stringValue
-                ?: throw IllegalStateException("Global prefix attribute ${Attribute.prefix} has a non-string value.")
+                ?: throw IllegalStateException("Global prefix attribute ${Attribute.prefix} must have a string value.")
         }
     }
 
