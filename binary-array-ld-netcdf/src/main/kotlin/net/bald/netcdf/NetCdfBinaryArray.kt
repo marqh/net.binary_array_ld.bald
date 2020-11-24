@@ -3,10 +3,12 @@ package net.bald.netcdf
 import net.bald.BinaryArray
 import net.bald.Container
 import org.apache.jena.shared.PrefixMapping
-import ucar.nc2.*
+import ucar.nc2.AttributeContainer
+import ucar.nc2.Group
+import ucar.nc2.NetcdfFile
+import ucar.nc2.NetcdfFiles
 import java.io.Closeable
 import java.io.File
-import java.lang.IllegalStateException
 
 /**
  * NetCDF implementation of [BinaryArray].

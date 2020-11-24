@@ -4,7 +4,7 @@ package net.bald
  * Represents a container of resources.
  * See https://www.opengis.net/def/binary-array-ld/Container
  */
-interface Container {
+interface Container: AttributeSource {
     /**
      * The local name of the container, if it has one.
      * The root container may have no name or an empty name.

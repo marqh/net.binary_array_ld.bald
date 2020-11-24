@@ -1,7 +1,9 @@
 package net.bald.netcdf
 
+import net.bald.Attribute
 import net.bald.Container
 import net.bald.Var
+import org.apache.jena.shared.PrefixMapping
 import ucar.nc2.Group
 import ucar.nc2.Variable
 
@@ -28,5 +30,10 @@ class NetCdfContainer(
 
     private fun acceptGroup(group: Group): Boolean {
         return prefixSrc != group.shortName
+    }
+
+    override fun attributes(prefixMapping: PrefixMapping): List<Attribute> {
+        val source = group.attributes().let(::NetCdfAttributeSource)
+        return source.attributes(prefixMapping)
     }
 }
