@@ -12,7 +12,7 @@ class NetCdfRootContainer(
     private val ba: NetCdfBinaryArray,
     group: Group,
 ): NetCdfContainer(group) {
-    override val uri: String get() = ba.uri + "/" // TODO trailing slash???
+    override val uri: String get() = ba.uri + "/"
     override val context: ModelContext get() = ba.context
     override val uriParser: UriParser get() = UriParser(ba.prefixMapping)
 
