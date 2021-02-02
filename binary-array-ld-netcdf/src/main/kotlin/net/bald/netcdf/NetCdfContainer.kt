@@ -3,7 +3,13 @@ package net.bald.netcdf
 import net.bald.Attribute
 import net.bald.Container
 import net.bald.Var
-import org.apache.jena.shared.PrefixMapping
+import net.bald.context.ModelContext
+import org.apache.jena.rdf.model.Property
+import org.apache.jena.rdf.model.RDFNode
+import org.apache.jena.rdf.model.ResourceFactory
+import org.apache.jena.rdf.model.ResourceFactory.createPlainLiteral
+import org.apache.jena.rdf.model.ResourceFactory.createResource
+import ucar.nc2.AttributeContainer
 import ucar.nc2.Group
 import ucar.nc2.Variable
 
@@ -15,6 +21,8 @@ import ucar.nc2.Variable
 abstract class NetCdfContainer(
     private val group: Group
 ): Container {
+    abstract val context: ModelContext
+    abstract val uriParser: UriParser
 
     override fun vars(): Sequence<Var> {
         return group.variables.asSequence().filter(::acceptVar).map(::toVar)
@@ -40,10 +48,26 @@ abstract class NetCdfContainer(
         return true
     }
 
-    override fun attributes(prefixMapping: PrefixMapping): List<Attribute> {
-        val source = group.attributes().let(::NetCdfAttributeSource)
-        return source.attributes(prefixMapping)
+    override fun attributes(): List<Attribute> {
+        return group.attributes().let(::source).attributes()
     }
+
+    private fun source(attrs: AttributeContainer): NetCdfAttributeSource {
+        return NetCdfAttributeSource(this, attrs)
+    }
+
+    fun parseProperty(name: String): Property {
+        return uriParser.parse(name)?.let(ResourceFactory::createProperty)
+            ?: context.property(name)
+            ?: childUri(name).let(ResourceFactory::createProperty)
+    }
+
+    fun parseRdfNode(value: String): RDFNode {
+        return uriParser.parse(value)?.let(::createResource)
+            ?: context.resource(value)
+            ?: createPlainLiteral(value)
+    }
+
 
     abstract fun childUri(name: String): String
 }
