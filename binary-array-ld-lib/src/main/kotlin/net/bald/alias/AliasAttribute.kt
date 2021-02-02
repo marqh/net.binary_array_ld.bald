@@ -1,8 +1,8 @@
 package net.bald.alias
 
 import net.bald.Attribute
+import net.bald.context.AliasDefinition
 import org.apache.jena.rdf.model.RDFNode
-import org.apache.jena.rdf.model.ResourceFactory
 
 /**
  * Decorator for [Attribute] which supports attribute aliasing.

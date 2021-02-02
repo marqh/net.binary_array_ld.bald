@@ -2,10 +2,10 @@ package net.bald.alias
 
 import com.nhaarman.mockitokotlin2.*
 import net.bald.Attribute
+import net.bald.context.AliasDefinition
 import org.apache.jena.rdf.model.RDFNode
-import org.apache.jena.rdf.model.ResourceFactory
 import org.apache.jena.rdf.model.ResourceFactory.*
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 

@@ -2,6 +2,7 @@ package net.bald.alias
 
 import net.bald.Container
 import net.bald.Var
+import net.bald.context.AliasDefinition
 
 /**
  * Decorator for [Container] which supports attribute aliasing.

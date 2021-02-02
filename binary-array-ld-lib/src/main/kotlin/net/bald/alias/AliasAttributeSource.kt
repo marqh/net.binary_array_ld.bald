@@ -1,6 +1,7 @@
 package net.bald.alias
 
 import net.bald.*
+import net.bald.context.AliasDefinition
 import org.apache.jena.shared.PrefixMapping
 
 /**

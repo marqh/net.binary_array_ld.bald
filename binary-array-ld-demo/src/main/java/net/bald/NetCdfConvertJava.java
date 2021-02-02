@@ -1,7 +1,7 @@
 package net.bald;
 
 import net.bald.alias.AliasBinaryArray;
-import net.bald.alias.AliasDefinition;
+import net.bald.context.AliasDefinition;
 import net.bald.model.ModelAliasDefinition;
 import net.bald.context.ContextBinaryArray;
 import net.bald.model.ModelBinaryArrayConverter;

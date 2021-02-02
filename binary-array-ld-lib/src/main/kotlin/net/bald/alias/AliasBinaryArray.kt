@@ -2,6 +2,7 @@ package net.bald.alias
 
 import net.bald.BinaryArray
 import net.bald.Container
+import net.bald.context.AliasDefinition
 import org.apache.jena.shared.PrefixMapping
 
 /**
