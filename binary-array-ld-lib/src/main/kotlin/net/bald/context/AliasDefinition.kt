@@ -1,4 +1,4 @@
-package net.bald.alias
+package net.bald.context
 
 import org.apache.jena.rdf.model.Property
 import org.apache.jena.rdf.model.Resource
@@ -20,4 +20,14 @@ interface AliasDefinition {
      * @return The corresponding alias, if it exists. Otherwise, null.
      */
     fun resource(identifier: String): Resource?
+
+    object Empty: AliasDefinition {
+        override fun property(identifier: String): Property? {
+            return null
+        }
+
+        override fun resource(identifier: String): Resource? {
+            return null
+        }
+    }
 }
