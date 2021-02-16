@@ -14,6 +14,8 @@ class NetCdfRootContainer(
 ): NetCdfContainer(group) {
     override val uri: String get() = ba.uri + "/"
     override val context: ModelContext get() = ba.context
+    override val parent: NetCdfContainer? get() = null
+    override val root: NetCdfContainer get() = this
     override val uriParser: UriParser get() = UriParser(ba.prefixMapping)
 
     private val prefixSrc = ba.prefixSrc

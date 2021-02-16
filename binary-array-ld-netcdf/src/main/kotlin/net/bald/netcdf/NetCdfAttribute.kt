@@ -33,7 +33,7 @@ class NetCdfAttribute(
     }
 
     private fun node(value: String): RDFNode {
-        return parent.parseRdfNode(value)
+        return parent.parseRdfNode(prop, value)
     }
 
     override fun toString(): String {

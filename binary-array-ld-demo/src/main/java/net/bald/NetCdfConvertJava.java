@@ -3,7 +3,6 @@ package net.bald;
 import net.bald.context.AliasDefinition;
 import net.bald.context.ModelContext;
 import net.bald.model.ModelAliasDefinition;
-import net.bald.context.ContextBinaryArray;
 import net.bald.model.ModelBinaryArrayConverter;
 import net.bald.netcdf.NetCdfBinaryArray;
 import org.apache.jena.rdf.model.Model;

@@ -21,22 +21,25 @@ import ucar.nc2.Variable
 abstract class NetCdfContainer(
     private val group: Group
 ): Container {
+    abstract val parent: NetCdfContainer?
+    abstract val root: NetCdfContainer
     abstract val context: ModelContext
     abstract val uriParser: UriParser
+    abstract fun childUri(name: String): String
 
     override fun vars(): Sequence<Var> {
-        return group.variables.asSequence().filter(::acceptVar).map(::toVar)
+        return group.variables.asSequence().filter(::acceptVar).map(::variable)
     }
 
     override fun subContainers(): Sequence<Container> {
         return group.groups.asSequence().filter(::acceptGroup).map(::subContainer)
     }
 
-    private fun toVar(v: Variable): Var {
+    private fun variable(v: Variable): NetCdfVar {
         return NetCdfVar(this, v)
     }
 
-    private fun subContainer(group: Group): Container {
+    private fun subContainer(group: Group): NetCdfContainer {
         return NetCdfSubContainer(this, group)
     }
 
@@ -52,6 +55,14 @@ abstract class NetCdfContainer(
         return group.attributes().let(::source).attributes()
     }
 
+    fun subContainer(name: String): NetCdfContainer? {
+        return group.findGroup(name)?.let(::subContainer)
+    }
+
+    fun variable(name: String): NetCdfVar? {
+        return group.findVariable(name)?.let(::variable)
+    }
+
     private fun source(attrs: AttributeContainer): NetCdfAttributeSource {
         return NetCdfAttributeSource(this, attrs)
     }
@@ -62,12 +73,16 @@ abstract class NetCdfContainer(
             ?: childUri(name).let(ResourceFactory::createProperty)
     }
 
-    fun parseRdfNode(value: String): RDFNode {
+    fun parseRdfNode(prop: Property, value: String): RDFNode {
         return uriParser.parse(value)?.let(::createResource)
             ?: context.resource(value)
+            ?: prop.takeIf(context::isReferenceProperty)?.let {
+                NetCdfPath.parse(value).locateVar(this)?.uri?.let(ResourceFactory::createResource)
+            }
             ?: createPlainLiteral(value)
     }
 
-
-    abstract fun childUri(name: String): String
+    override fun toString(): String {
+        return group.toString()
+    }
 }

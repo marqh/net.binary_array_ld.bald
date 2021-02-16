@@ -23,6 +23,7 @@ interface ModelContext: AliasDefinition {
         override val prefixMapping: PrefixMapping get() = PrefixMapping.Factory.create()
         override fun property(identifier: String): Property? = null
         override fun resource(identifier: String): Resource? = null
+        override fun isReferenceProperty(prop: Property): Boolean = false
     }
 
     /**
@@ -38,6 +39,10 @@ interface ModelContext: AliasDefinition {
 
         override fun resource(identifier: String): Resource? {
             return alias.resource(identifier)
+        }
+
+        override fun isReferenceProperty(prop: Property): Boolean {
+            return alias.isReferenceProperty(prop)
         }
     }
 

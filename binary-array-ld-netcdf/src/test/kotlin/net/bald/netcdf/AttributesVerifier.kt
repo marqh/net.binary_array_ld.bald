@@ -2,6 +2,7 @@ package net.bald.netcdf
 
 import net.bald.Attribute
 import net.bald.AttributeSource
+import org.apache.jena.rdf.model.RDFNode
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
@@ -10,7 +11,7 @@ class AttributesVerifier(
     private val attrIt: Iterator<Attribute>
 ) {
     /**
-     * Verify that the next attribute has the given properties.
+     * Verify that the next attribute has the given URI.
      * Begin verifying values on the attribute.
      * @param uri The expected attribute URI.
      * @param verify A function to perform against the [AttributeValuesVerifier] for the attribute.
@@ -27,6 +28,17 @@ class AttributesVerifier(
             }
         } else {
             fail("Expected attribute with URI $uri on $source, but no more attributes were found.")
+        }
+    }
+
+    /**
+     * Verify that the next attribute has the given URI,
+     * and that the given value is its single value.
+     * @see attribute
+     */
+    fun attribute(uri: String, value: RDFNode) {
+        attribute(uri) {
+            value(value)
         }
     }
 }
