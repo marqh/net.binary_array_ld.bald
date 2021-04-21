@@ -62,9 +62,8 @@ class ModelAliasDefinition(
             clsUris.contains(cls.uri) -> false
             else -> {
                 val nextClsUris = cls.uri?.let(clsUris::plus) ?: clsUris
-                cls.listProperties(RDFS.subClassOf).let { parents ->
-                    containsReferenceCls(parents, nextClsUris)
-                }
+                val parents = cls.listProperties(RDFS.subClassOf)
+                containsReferenceCls(parents, nextClsUris)
             }
         }
     }
